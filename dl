@@ -3,7 +3,7 @@ local list = {
 	[1119466531] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/ato/main/speed')))()",
 	
 	--力量传奇
-	[1268927906] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/ato/main/script')))()",	
+	[1268927906] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/ato/main/muscle')))()",	
 	
 	--超级大力士模拟器
 	[2564505263] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/dalishi')))()",	
