@@ -1,0 +1,106 @@
+local list = {
+	--极速传奇
+	[1119466531] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/ato/main/speed')))()",
+	
+	--力量传奇
+	[1268927906] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/ato/main/script')))()",	
+	
+	--超级大力士模拟器
+	[2564505263] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/dalishi')))()",	
+	
+	--忍者传奇
+	[1335695570] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/ninjalegend')))()",
+	
+	--举重模拟器
+	[1275875292] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/liftinglegend')))()",			
+
+    --举重传说模拟器
+	[2021822948] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/liftinglegendsimulator')))()",	
+	
+	--吃掉世界
+	[5677613211] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/eattheworld')))()",	
+	
+	--健身联盟
+	[5972059550] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/Gymlm')))()",	
+	
+	--动物进化模拟器
+	[3358419523] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/animalssimulator')))()",	
+
+    --跳跃模拟器
+    [2270731722] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/jumpsimulator')))()",
+
+    --超级力量格斗模拟器
+    [940024091] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/supermuscle')))()",
+
+    --强壮传奇
+    [147235689] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/qz')))()",
+
+    --健身房王国
+    [1315353562] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/gymwg')))()",
+    
+    --健身模拟器
+    [940024091] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/js')))()",
+
+    --升降传奇
+    [6488212742] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/sjcq')))()",
+
+    --超级食肉者模拟器
+    [3136631809] = "loadstring(game:HttpGet(('https://raw.githubusercontent.com/wucan114514/gegeyxjb/main/srz')))()",
+
+}
+
+local name = {
+
+	[1119466531] = "极速传奇",
+
+	[1268927906] = "力量传奇",
+
+	[2564505263] = "超级大力士模拟器",
+
+	[1335695570] = "忍者传奇",
+
+	[1275875292] = "举重模拟器",
+
+    [2021822948] = "举重传说模拟器",		
+
+	[5677613211] = "吃掉世界",
+		
+	[5972059550] = "健身联盟",
+	
+	[3358419523] = "动物进化模拟器",
+	
+	[2270731722] = "跳跃模拟器",
+
+	[940024091] = "超级力量格斗模拟器",
+	
+	[147235689] = "强壮传奇",
+	
+	[1315353562] = "健身房王国",
+	
+	[5677613211] = "健身模拟器",
+	
+	[6488212742] = "升降传奇",	
+	
+	[3136631809] = "超级食肉者模拟器",	
+																																				
+}
+
+_G.HoHoLoaded = true
+if getgenv().Key and listPre[game.GameId] ~= nil then
+	getgenv().messagebox = function()end
+	loadstring(listPre[tonumber(game.GameId)])()
+elseif not getgenv().Key and list[game.GameId] ~= nil then
+    game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "当前游戏:"..name[game.GameId].."";
+                Text ="检测到你当前游玩的游戏为:"..name[game.GameId].."\n已自动为你执行此游戏脚本";
+                Duration = 3;
+            })
+	loadstring(list[tonumber(game.GameId)])()
+else
+	game:GetService("StarterGui"):SetCore("SendNotification",{
+                Title = "错误：没有此游戏脚本";
+                Text ="安脚本暂时没有此游戏脚本，你可以加q群来许愿游戏脚本，qq群号已自动复制到您的粘贴板里";
+                Duration = 5;
+            })
+	setclipboard("984571833")
+end
