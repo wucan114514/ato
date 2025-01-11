@@ -406,68 +406,27 @@ Tab:AddToggle({
   end
 })
 
-Tab:AddSection({
-    Title = "自动停止"
-})
+Tab:AddSection("快速重生")
 
-local gr = {"280","580","980","1480","2080","2780","3580","4480","5480","6580","7780","9080","10480","11980","13580","15280","17080","18980"}
+_G.autotpjr = true
 
-local grcs = 0
-
-local cs = Tab:AddDropdown({
-  Name = "绿石头卡宠重生",
-  Options = gr,
-  Default = "...",
-  Callback = function(Value)
-   grcs = Value
-  end
-})
-
-
-local bcs = {"1480","2980","4980","7480","10480","13980","17980","22480","27480","32980","38980","45480","52480","59980","67980","76480","85480","94980"}
-
-local cs = Tab:AddDropdown({
-  Name = "白石头卡宠重生",
-  Options = gr,
-  Default = "...",
-  Callback = function(Value)
-   grcs = Value
-  end
-})
-
-
-local cscs = {"189980"}
-
-local cs = Tab:AddDropdown({
-  Name = "橙石头卡宠重生",
-  Options = gr,
-  Default = "...",
-  Callback = function(Value)
-   grcs = Value
-  end
-})
-
-_G.autoting = true
-
-function autoting()
-	while _G.autoting == true do
+function autotpjr()
+	while _G.autotpjr == true do
 	wait()
-	if game:GetService("Players").LocalPlayer.leaderstats.Rebirths.Value >= (""..grcs) then
-	     game.Players.LocalPlayer:Kick("已自动重生到"..grcs.."已自动为你踢出")
-	else
-	     game:GetService("ReplicatedStorage").rEvents.rebirthRemote:InvokeServer("rebirthRequest")	
-end	         
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8625.9296875, 13.566278457641602, -5730.4736328125)
 	end
 end	
 
-local autostop = Tab:AddToggle({
-  Name = "自动重生",  
+Tab:AddToggle({
+  Name = "自动传送到肌肉之王",  
   Default = false,
   Callback = function(Value)
-    _G.autoting = Value
-        autoting()
+    _G.autotpjr = Value
+        autotpjr()
   end
 })
+
+
 
 local Tab = Window:MakeTab({"卡宠功能", "cool"})
 
@@ -910,12 +869,13 @@ game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
 
 local Tab = Window:MakeTab({"宠物商店", "cool"})
 
-local buyjc = {"暗星","赛博龙","肌肉之王"}
+local buyjc = {"暗星","赛博龙","肌肉之王","守护者","力量师傅","熵爆"}
 
 local bpqq = ""
 
 local cs = Tab:AddDropdown({
   Name = "金宠购买",
+  Description = "物品容量满了会导致无法购买",
   Options = buyjc,
   Default = "...",
   Callback = function(Value)
@@ -926,6 +886,12 @@ local cs = Tab:AddDropdown({
      bpqq = "Cybernetic Showdown Dragon"
      elseif buyp == "肌肉之王" then
      bpqq = "Muscle King"
+     elseif buyp == "守护者" then
+     bpqq = "Neon Guardian"
+     elseif buyp == "力量师傅" then
+     bpqq = "Muscle Sensei"
+     elseif buyp == "熵爆" then
+     bpqq = "Entropic Blast"
      end       
   end
 })
@@ -952,107 +918,17 @@ Tab:AddToggle({
   end
 })
 
-local Tab = Window:MakeTab({"快速重生", "cool"})
-
-Tab:AddToggle({
-  Name = "自动锻炼",  
-  Default = false,
-  Callback = function(Value)
-llzddl = arg
-		game:GetService("RunService").Stepped:connect(
-		function()
-			pcall(
-				function()
-					if llzddl then
-					local args = {
-    [1] = "rep"
-}
-
-game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
-						if llzddl then
-							game.Players.LocalPlayer.Character.Humanoid:EquipTool(
-								game:GetService("Players").LocalPlayer.Backpack.Weight
-							)
-						end
-					end
-				end
-			)
-		end
-		)
-  end
-})
-
-_G.autotpjr = true
-
-function autotpjr()
-	while _G.autotpjr == true do
-	wait()
-	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-8625.9296875, 13.566278457641602, -5730.4736328125)
-	end
-end	
-
-Tab:AddToggle({
-  Name = "自动传送到肌肉之王",  
-  Default = false,
-  Callback = function(Value)
-    _G.autotpjr = Value
-        autotpjr()
-  end
-})
-
-_G.autoshe2 = true
-
-function autoshe2()
-	while _G.autoshe2 == true do
-	wait()
-	local args = {
-    [1] = "changeSize",
-    [2] = 2
-}
-
-game:GetService("ReplicatedStorage").rEvents.changeSpeedSizeRemote:InvokeServer(unpack(args))
-
-	end
-end	
-
-Tab:AddToggle({
-  Name = "自动设置大小为2",  
-  Default = false,
-  Callback = function(Value)
-    _G.autoshe2 = Value
-        autoshe2()
-  end
-})
-
-local Section = Tab:AddSection("重生请手动去重生功能开启")
-
 local Tab = Window:MakeTab({"玩家信息", "cool"})
 
-Tab:AddSection("自身信息")
+local lll = game:GetService("Players").LocalPlayer.leaderstats.Strength.Value 
+local mmm = game:GetService("Players").LocalPlayer.Agility.Value
+local nnnn = game:GetService("Players").LocalPlayer.Durability.Value
 
-local myl = Tab:AddSection("力量:")
+local myll = Tab:AddParagraph({"玩家信息"})
 spawn(function()
 while wait() do
 pcall(function()
-myl:Set("力量:"..game:GetService("Players").LocalPlayer.leaderstats.Strength.Value )
-end)
-end
-end)
-
-local nlll = Tab:AddSection("耐力:")
-spawn(function()
-while wait() do
-pcall(function()
-nlll:Set("耐力:"..game:GetService("Players").LocalPlayer.Durability.Value)
-end)
-end
-end)
-
-local mjjj = Tab:AddSection("敏捷:")
-spawn(function()
-while wait() do
-pcall(function()
-mjjj:Set("敏捷:"..game:GetService("Players").LocalPlayer.Agility.Value)
+myll:SetDesc("力量:"..game:GetService("Players").LocalPlayer.leaderstats.Strength.Value.."\n耐力:"..nnnn.."\n敏捷:"..mmm)
 end)
 end
 end)
@@ -1208,5 +1084,93 @@ Tab:AddTextBox({
 end
 })
 
+local Tab = Window:MakeTab({"自动吃食", "cool"})
 
+local shc = ""
+
+local hcs = ""
+
+local sxcs = {"蛋白质棒","能量棒","健壮条","蛋白质奶昔","超级奶昔","蛋白质蛋"}
+
+local xcsm = Tab:AddDropdown({
+  Name = "选择你要吃的加成物品",
+  Options = sxcs,
+  Default = "...",
+  Callback = function(Value)
+     shc = Value
+     if shc == "蛋白质棒" then
+        hcs = "proteinBar"
+     elseif shc == "能量棒" then
+        hcs = "energyBar"
+     elseif shc == "健壮条" then
+        hcs = "toughBar"
+     elseif shc == "蛋白质奶昔" then
+        hcs = "proteinShake"  
+     elseif shc == "超级奶昔" then
+        hcs = "ultraShake"
+     elseif shc == "蛋白质蛋" then
+        hcs = "proteinEgg"     
+     end         
+  end
+})
+_G.auto_chishi = true
+
+function auto_chishi()
+	while _G.auto_chishi == true do
+	wait()
+	if shc == "蛋白质棒" then
+	local args = {
+    [1] = "proteinBar",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Protein Bar")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+elseif shc == "能量棒" then
+local args = {
+    [1] = "energyBar",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Energy Bar")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+elseif shc == "健壮条" then
+local args = {
+    [1] = "toughBar",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("TOUGH Bar")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+elseif shc == "蛋白质奶昔" then
+local args = {
+    [1] = "proteinShake",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Protein Shake")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+elseif shc == "超级奶昔" then
+local args = {
+    [1] = "ultraShake",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("ULTRA Shake")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+elseif shc == "蛋白质蛋" then
+local args = {
+    [1] = "proteinEgg",
+    [2] = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Protein Egg")
+}
+
+game:GetService("Players").LocalPlayer.muscleEvent:FireServer(unpack(args))
+end
+	end
+end	
+
+Tab:AddToggle({
+  Name = "自动吃食",
+  Description = "需手动装备对应物品",
+  Default = false,
+  Callback = function(Value)
+      _G.auto_chishi = Value
+        auto_chishi()
+  end
+})
 
